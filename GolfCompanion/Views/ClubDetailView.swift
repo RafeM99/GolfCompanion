@@ -11,9 +11,9 @@ struct ClubDetailView: View {
     let club: Club
     
     var body: some View {
-        Form {
-            Text("Brand: " + club.brand)
-            Text("Distance: " + String(club.distance) + " yds")
+        List {
+            Text("Brand: \(club.brand)")
+            Text("Distance: \(club.distance) yds")
             
         }
         .navigationTitle(club.type.rawValue)

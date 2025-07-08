@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct BagView: View {
-    @State private var bag = Bag(clubs: Bag.examples)
+    @State var bag = Bag(clubs: Bag.examples)
+    @State private var isShowingSheet: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -27,6 +28,22 @@ struct BagView: View {
                         }
                     })
             }
+            .navigationTitle("Bag")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        isShowingSheet = true
+                    }, label: {
+                        Image(systemName: "plus")
+                            .padding(10)
+                    })
+                }
+            }
+            .sheet(isPresented: $isShowingSheet, onDismiss: {
+                isShowingSheet = false
+            }, content: {
+                AddClubView(clubs: $bag.clubs, isShowing: $isShowingSheet)
+            })
         }
     }
 }

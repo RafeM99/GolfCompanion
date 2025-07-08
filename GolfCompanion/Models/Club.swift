@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ClubType: String {
+enum ClubType: String, CaseIterable {
     case driver = "Driver"
     case threeWood = "3 Wood"
     case fiveWood = "5 Wood"

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Bag {
-    let clubs: [Club]
+    var clubs: [Club]
     
     static var examples: [Club] {
         return [
