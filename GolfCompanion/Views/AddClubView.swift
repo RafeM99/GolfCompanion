@@ -42,14 +42,24 @@ struct AddClubView: View {
                 })
             }
             
-            Button(action: {
-                let newClub = Club(type: newType, brand: newBrand, isLeftHanded: newIsLeft, distance: Int(newDistance))
-                clubs.append(newClub)
-                isShowing = false
-            }, label: {
-                Text("Add Club")
-            })
+            HStack {
+                Spacer()
+                
+                Button(action: {
+                    let newClub = Club(type: newType, brand: newBrand, isLeftHanded: newIsLeft, distance: newDistance)
+                    clubs.append(newClub)
+                    clubs.sort(by: {$0.distance > $1.distance})
+                    isShowing = false
+                }, label: {
+                    Text("Add Club")
+                        .font(.title2)
+                })
+                
+                Spacer()
+            }
+            .padding(8)
         }
+        .presentationDetents([.fraction(0.5)])
     }
 }
 

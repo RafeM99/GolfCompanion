@@ -11,20 +11,39 @@ enum ClubType: String, CaseIterable {
     case driver = "Driver"
     case threeWood = "3 Wood"
     case fiveWood = "5 Wood"
-    case nineIron = "9 Iron"
-    case eightIron = "8 Iron"
-    case sevenIron = "7 Iron"
-    case sixIron = "6 Iron"
+    case sevenWood = "7 Wood"
+    case threeHybrid = "3 Hybrid"
+    case fourHybrid = "4 Hybrid"
+    case fiveHybrid = "5 Hybrid"
+    case sixHybrid = "6 Hybrid"
+    case sevenHybrid = "7 Hybrid"
+    case threeIron = "3 Iron"
+    case fourIron = "4 Iron"
     case fiveIron = "5 Iron"
+    case sixIron = "6 Iron"
+    case sevenIron = "7 Iron"
+    case eightIron = "8 Iron"
+    case nineIron = "9 Iron"
+    case tenIron = "10 Iron"
     case pitchingWedge = "Pitching Wedge"
     case sandWedge = "Sand Wedge"
+    case fiftyTwoDegree = "52° Wedge"
+    case fiftySixDegree = "56° Wedge"
+    case sixtyDegree = "60° Wedge"
     case putter = "Putter"
 }
 
-struct Club: Identifiable, Hashable {
+class Club: Identifiable, Hashable {
     let id = UUID()
     let type: ClubType
-    let brand: String
-    let isLeftHanded: Bool
-    var distance: Int
+    var brand: String
+    var isLeftHanded: Bool
+    var distance: Double
+    
+    init(type: ClubType, brand: String, isLeftHanded: Bool, distance: Double) {
+        self.type = type
+        self.brand = brand
+        self.isLeftHanded = isLeftHanded
+        self.distance = distance
+    }
 }

@@ -13,20 +13,27 @@ struct BagView: View {
     
     var body: some View {
         NavigationStack {
-            List(bag.clubs, id:\.self) { club in
-                    NavigationLink(destination: {
-                        ClubDetailView(club: club)
-                    }, label: {
-                        HStack {
-                            Text(club.type.rawValue)
+            List(bag.clubs, id: \.id) { club in
+                NavigationLink(destination: {
+                    ClubView(club: club)
+                }, label: {
+                    HStack {
+                        Text(club.type.rawValue)
                             
-                            Spacer()
+                        Spacer()
                             
-                            Text(String(club.distance) + " yds")
-                                .fontWeight(.bold)
-                                .font(.title3)
-                        }
-                    })
+                        Text("\(club.distance, specifier: "%.0f") yds")
+                            .fontWeight(.bold)
+                            .font(.title3)
+                    }
+                })
+                .swipeActions(edge: .trailing) {
+                    Button(role: .destructive) {
+                        deleteClub(club)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
             .navigationTitle("Bag")
             .toolbar {
@@ -36,6 +43,7 @@ struct BagView: View {
                     }, label: {
                         Image(systemName: "plus")
                             .padding(10)
+                            .fontWeight(.bold)
                     })
                 }
             }
@@ -44,6 +52,14 @@ struct BagView: View {
             }, content: {
                 AddClubView(clubs: $bag.clubs, isShowing: $isShowingSheet)
             })
+        }
+    }
+    func deleteClub(_ club: Club) {
+        for i in 0..<bag.clubs.count {
+            if bag.clubs[i] == club {
+                bag.clubs.remove(at: i)
+                bag.clubs.sort(by: {$0.distance > $1.distance})
+            }
         }
     }
 }
