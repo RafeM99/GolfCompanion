@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditClubView: View {
-    @Binding var club: Club
+    @Bindable var club: Club
     @Binding var isShowing: Bool
     
     var body: some View {

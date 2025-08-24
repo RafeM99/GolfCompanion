@@ -55,12 +55,8 @@ struct BagView: View {
         }
     }
     func deleteClub(_ club: Club) {
-        for i in 0..<bag.clubs.count {
-            if bag.clubs[i] == club {
-                bag.clubs.remove(at: i)
-                bag.clubs.sort(by: {$0.distance > $1.distance})
-            }
-        }
+        bag.clubs.removeAll{$0.id == club.id}
+        bag.clubs.sort{$0.distance > $1.distance}
     }
 }
 

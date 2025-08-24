@@ -33,7 +33,8 @@ enum ClubType: String, CaseIterable {
     case putter = "Putter"
 }
 
-class Club: Identifiable, Hashable {
+@Observable
+class Club: Identifiable {
     let id = UUID()
     let type: ClubType
     var brand: String

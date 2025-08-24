@@ -37,7 +37,7 @@ struct ClubView: View {
         .sheet(isPresented: $isShowingSheet, onDismiss: {
             isShowingSheet = false
         }, content: {
-            EditClubView(club: $club, isShowing: $isShowingSheet)
+            EditClubView(club: club, isShowing: $isShowingSheet)
         })
     }
 }
