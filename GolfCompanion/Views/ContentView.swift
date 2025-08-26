@@ -9,7 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        BagView()
+        TabView{
+            BagView()
+                .tabItem{
+                    Label("Bag", image: "golf.bag")
+                }
+            CoursesView()
+                .tabItem{
+                    Label("Courses", image: "golf.flag.fill")
+                }
+            PlayView()
+                .tabItem{
+                    Label("Play", systemImage: "figure.golf")
+                }
+        }
     }
 }
 

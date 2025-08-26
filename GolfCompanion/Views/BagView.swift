@@ -19,6 +19,7 @@ struct BagView: View {
                 }, label: {
                     HStack {
                         Text(club.type.rawValue)
+                            .font(.title3)
                             
                         Spacer()
                             
@@ -26,6 +27,7 @@ struct BagView: View {
                             .fontWeight(.bold)
                             .font(.title3)
                     }
+                    .padding(.vertical, 8)
                 })
                 .swipeActions(edge: .trailing) {
                     Button(role: .destructive) {
