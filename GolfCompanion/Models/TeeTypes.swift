@@ -8,6 +8,6 @@
 import Foundation
 
 struct TeeTypes {
-    let female: Tee
-    let male: Tee
+    let female: [Tee]
+    let male: [Tee]
 }

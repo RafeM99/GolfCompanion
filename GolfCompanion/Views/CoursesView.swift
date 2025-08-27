@@ -8,8 +8,19 @@
 import SwiftUI
 
 struct CoursesView: View {
+    let courses = Course.courseExamples
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            List(courses) { course in
+                NavigationLink(destination: {
+                    CourseDetailView(course: course)
+                }, label: {
+                    Text("\(course.courseName)")
+                })
+            }
+            .navigationTitle("Courses")
+        }
     }
 }
 
