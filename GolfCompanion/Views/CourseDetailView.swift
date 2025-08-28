@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CourseDetailView: View {
-    let course: Course
+    @State var course: Course
     
     var body: some View {
         NavigationStack {
@@ -63,6 +63,17 @@ struct CourseDetailView: View {
                 })
             }
             .navigationTitle("\(course.courseName)")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(action: {
+                        course.isFavourite.toggle()
+                    }, label: {
+                        Image(systemName: course.isFavourite ? "star.fill" : "star")
+                            .padding()
+                    })
+                    .symbolEffect(.bounce, value: course.isFavourite)
+                }
+            }
         }
     }
 }

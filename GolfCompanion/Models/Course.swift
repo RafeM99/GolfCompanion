@@ -7,12 +7,21 @@
 
 import Foundation
 
-struct Course: Identifiable {
+@Observable
+class Course: Identifiable {
     let id = UUID()
     let clubName: String
     let courseName: String
     let location: Location
     let tees: TeeTypes
+    var isFavourite: Bool = false
+    
+    init(clubName: String, courseName: String, location: Location, tees: TeeTypes) {
+        self.clubName = clubName
+        self.courseName = courseName
+        self.location = location
+        self.tees = tees
+    }
     
     static var courseExamples: [Course] {
         return [

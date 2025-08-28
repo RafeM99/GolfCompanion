@@ -8,15 +8,24 @@
 import SwiftUI
 
 struct CoursesView: View {
-    let courses = Course.courseExamples
+    @State var courses = Course.courseExamples
     
     var body: some View {
         NavigationStack {
-            List(courses) { course in
+            List($courses) { $course in
                 NavigationLink(destination: {
                     CourseDetailView(course: course)
                 }, label: {
-                    Text("\(course.courseName)")
+                    HStack {
+                        Image(systemName: course.isFavourite ? "star.fill" : "star")
+                            .onTapGesture {
+                                course.isFavourite.toggle()
+                            }
+                            .foregroundColor(.blue)
+                            .symbolEffect(.bounce, value: course.isFavourite)
+                        
+                        Text("\(course.courseName)")
+                    }
                 })
             }
             .navigationTitle("Courses")
